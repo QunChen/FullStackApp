@@ -1,0 +1,10 @@
+{
+  "name": "FullStackApp",
+  "homepage": "https://github.com/QunChen/FullStackApp",
+  "authors": [
+    "QunChen <qunchen1986@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT"
+}
