@@ -23,10 +23,7 @@
   background: #1a237e;
 }
 .carousel .item {
-  left: 0;
-  min-height: 300px;
-  position: absolute;
-  top: 0;
+  height: 300px;
 }
 .navbar-inverse {
   background: #303f9f;
@@ -85,6 +82,12 @@ body {
 }
 .affix {
   top: 100px;
+}
+.item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-height: 300px;
 }
 #carouselButtons {
   bottom: 0px;
