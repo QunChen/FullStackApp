@@ -1,0 +1,14 @@
+{
+  "name": "FullStackApp",
+  "homepage": "https://github.com/QunChen/FullStackApp",
+  "authors": [
+    "QunChen <qunchen1986@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "font-awesome": "^4.6.3"
+  }
+}
