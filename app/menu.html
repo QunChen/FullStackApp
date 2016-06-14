@@ -12,8 +12,8 @@
 		<link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link href="../bower_components/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
 		<link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-		<link href="css/bootstrap-social.css" rel="stylesheet">
-		<link href="css/mystyles.css" rel="stylesheet">
+		<link href="styles/bootstrap-social.css" rel="stylesheet">
+		<link href="styles/mystyles.css" rel="stylesheet">
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -38,11 +38,27 @@
 			comment: ''
 			}
 			">
-				<div class="col-xs-12"></div>
+				<div class="col-xs-12">
+					 <div class="col-xs-12">
+                <div class="media">
+                    <div class="media-left media-middle">
+                        <a href="#">
+                        <img class="media-object img-thumbnail"
+                         ng-src={{dish.image}} alt="Uthappizza">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h2 class="media-heading">{{dish.name}}
+                         <span class="label label-danger">{{dish.label}}</span>
+                         <span class="badge">{{dish.price | currency}}</span></h2>
+                        <p>{{dish.description}}</p>
+                    </div>
+                </div>
+            </div>
+				</div>
 			</div>
 		</div>
 		<script src="../bower_components/angular/angular.min.js"></script>
-		<script></script>
 	</body>
 
 </html>
