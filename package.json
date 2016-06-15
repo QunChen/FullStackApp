@@ -1,0 +1,21 @@
+{
+  "name": "full-stack-app",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://QunChen:GitHub585@github.com/QunChen/FullStackApp.git"
+  },
+  "author": "",
+  "license": "BSD",
+  "bugs": {
+    "url": "https://github.com/QunChen/FullStackApp/issues"
+  },
+  "devDependencies": {
+    "grunt": "~1.0.1"
+  }
+}
