@@ -1,11 +1,12 @@
 'use strict';	
 
-angular.module('confusionApp', []).controller('menuController', function() {
+angular.module('confusionApp', []).controller('MenuController',['$scope', function($scope) {
 
-				this.tab = 1;
-				this.filtText = "";
+				$scope.tab = 1;
+				$scope.filtText = "";
+				$scope.showDetails=false;
 
-				var dishes = [{
+				$scope.dishes = [{
 					name : 'Uthapizza',
 					image : 'images/uthapizza.png',
 					category : 'mains',
@@ -38,24 +39,27 @@ angular.module('confusionApp', []).controller('menuController', function() {
 					description : 'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms',
 					comment : ''
 				}];
-				this.dishes = dishes;
 
-				this.select = function(setTab) {
-					this.tab = setTab;
+				$scope.select = function(setTab) {
+					$scope.tab = setTab;
 						if (setTab === 1) {
-						this.filtText = '';
+						$scope.filtText = '';
 					}
 					if (setTab === 2) {
-						this.filtText = 'appetizer';
+						$scope.filtText = 'appetizer';
 					} else if (setTab === 3) {
-						this.filtText = 'mains';
+						$scope.filtText = 'mains';
 					} else if (setTab === 4) {
-						this.filtText = 'dessert';
+						$scope.filtText = 'dessert';
 					}
 				};
 
-				this.isSelected = function(checkTab) {
-					return (this.tab === checkTab);
+				$scope.isSelected = function(checkTab) {
+					return ($scope.tab === checkTab);
+				};
+				
+				$scope.toggleDetails=function(){
+					$scope.showDetails=!$scope.showDetails;
 				};
 
-			});
+			}]);
