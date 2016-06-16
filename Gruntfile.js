@@ -4,7 +4,9 @@ module.exports = function(grunt){
 	
 	require('time-grunt')(grunt);
 	
-	require('jit-grunt')(grunt);
+	require('jit-grunt')(grunt,{
+		useminPrepare:'grunt-usemin'
+	});
 	
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
@@ -50,13 +52,59 @@ module.exports = function(grunt){
 				build:{
 					src:['dist/']
 				}
+			},
+			useminPrepare: {
+				html: 'app/menu.html',
+				options:{
+					dest:'dist'
+				}
+			},
+			concat:{
+				options:{
+					separator:";"
+				},
+				dist:{}
+			},
+			uglify:{
+				dist:{}
+			},
+			cssmin:{
+				dist:{}
+			},
+			filerev:{
+				options:{
+					encoding:'utf8',
+					algorithm:'md5',
+					length:20
+				},
+				release:{
+					files:[{
+						src:[
+							'dist/scripts/*.js',
+							'dist/styles/*.css',
+							]
+					}]
+				}
+			},
+			usemin:{
+				html:['dist/menu.html'],
+				css:['dist/styles/*.css'],
+				options:{
+					assetsDirs:['dist','dist/styles']
+				}
 			}
 	});
 	
 	grunt.registerTask('build', [
 		'clean',
 		'jshint',
-		'copy']);
+		'useminPrepare',
+		'concat',
+		'cssmin',
+		'uglify',
+		'copy',
+		'filerev',
+		'usemin']);
 	
 	grunt.registerTask('default',['build']);
 	
