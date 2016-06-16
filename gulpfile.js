@@ -1,4 +1,5 @@
-var gulp = require('gulp'), minifycss = require('gulp-minify-css'), jshint = require('gulp-jshint'), stylish = require('jshint-stylish'), uglify = require('gulp-uglify'), usemin = require('gulp-usemin'), imagemin = require('gulp-imagemin'), rename = require('gulp-rename'), concat = require('gulp-concat'), notify = require('gulp-notify'), cache = require('gulp-cache'), changed = require('gulp-changed'), rev = require('gulp-rev'), browserSync = require('browser-sync'), del = require('del');
+var gulp = require('gulp'), minifycss = require('gulp-minify-css'), jshint = require('gulp-jshint'), stylish = require('jshint-stylish'), uglify = require('gulp-uglify'), usemin = require('gulp-usemin'), imagemin = require('gulp-imagemin'), rename = require('gulp-rename'), concat = require('gulp-concat'), notify = require('gulp-notify'), cache = require('gulp-cache'), changed = require('gulp-changed'), rev = require('gulp-rev'), browserSync = require('browser-sync'), del = require('del'), require
+('gulp-ng-annotate');
 
 gulp.task('jshint', function() {
 	return gulp.src("app/scripts/**/*.js").pipe(jshint()).pipe(
@@ -8,7 +9,7 @@ gulp.task('jshint', function() {
 gulp.task('usemin', function() {
 	return gulp.src('./app/menu.html').pipe(usemin({
 		css : [ minifycss(), rev() ],
-		js : [ uglify(), rev() ]
+		js : [ ngannotate(),uglify(), rev() ]
 	})).pipe(gulp.dest('dist/'));
 });
 
