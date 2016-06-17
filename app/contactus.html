@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="confusionApp">
 
 	<head>
 		<meta charset="utf-8">
@@ -105,7 +105,7 @@
 			</div>
 		</header>
 
-		<div class="container">
+		<div class="container" ng-controller="ContactController">
 			<div class="row">
 				<div class="col-xs-12">
 					<ul class="breadcrumb">
@@ -159,7 +159,7 @@
 				<div class="col-xs-12">
 					<h3>Send us your Feedback</h3>
 				</div>
-				<div class="col-xs-12 col-sm-9">
+				<div class="col-xs-12 col-sm-9" ng-controller="FeedbackController">
 					<form class="form-horizontal" role="form">
 						<div class="form-group">
 							<label for="firstname" class="col-sm-2 control-label">First Name</label>
@@ -289,6 +289,8 @@
 		</footer>
 		<script src="../bower_components/jquery/dist/jquery.min.js"></script>
 		<script  src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+		<script src="../bower_components/angular/angular.min.js"></script>
+		<script src="scripts/app.js"></script>
 	</body>
 
 </html>
