@@ -140,7 +140,7 @@ angular.module("confusionApp").factory('menuFactory', function() {
 		return dishes;
 	}
 	
-	menufac.getDishes = function(index){
+	menufac.getDish= function(index){
 		return dishes[index];
 	}
 	
