@@ -148,7 +148,9 @@ function($scope) {
 }]).controller('DishCommentController', ['$scope',
 function($scope) {
 
-	//Step 1: Create a JavaScript object to hold the comment from the form
+	$scope.comments = {
+		name:"",rating:5,comment:"",data:""
+	};
 
 	$scope.submitComment = function() {
 
