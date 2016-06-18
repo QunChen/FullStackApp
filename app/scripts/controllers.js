@@ -72,10 +72,10 @@ function($scope) {
 			console.log($scope.feedback);
 		}
 	};
-}]).controller('DishDetailController', ['$scope','menuFactory',
-function($scope,menuFactory) {
+}]).controller('DishDetailController', ['$scope','menuService',
+function($scope,menuService) {
 
-	var dish = menuFactory.getDish(3);
+	var dish = menuService.getDish(3);
 	$scope.dish = dish;
 	$scope.order = "";
 
