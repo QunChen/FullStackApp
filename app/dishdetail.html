@@ -68,14 +68,20 @@
 					</li>
 				</div>
 				<div class="col-xs-9 col-xs-offset-1" ng-controller="DishCommentController">
-					<ul class="list-unstyled">
-						<p>
-							Task 3: Here you include the code to show the live preview of the comment
-						</p>
-						<p>
-							The comment should be shown only when the form contains valid
-							information and is not pristine
-						</p>
+					<ul class="list-unstyled" ng-show="commentForm.$valid&&commentForm.$dirty">
+						<li>
+							<blockquote>
+							<p>
+								{{comments.rating}} Stars
+							</p>
+							<p>
+								{{comments.comment}}
+							</p>
+							<footer>
+								{{comments.name}}
+							</footer>
+						</blockquote>
+						</li>
 					</ul>
 					<form class="form-horizontal" name="commentForm" ng-submit="submitComment()" novalidate>
 						<div class="form-group" ng-class="{'has-error':commentForm.name.$error.required&&commentForm.name.$dirty}">
@@ -86,8 +92,8 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="rating" class="label-control col-md-3">Number of Stars</label>
-							<div class="col-md-9">
+							<label for="rating" class="label-control col-md-2">Number of Stars</label>
+							<div class="col-md-10">
 								<label class="radio-inline">
 									<input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="1" ng-model="comments.rating">
 									1 </label>
@@ -106,22 +112,19 @@
 							</div>
 						</div>
 						<div class="form-group" ng-class="{'has-error':commentForm.comment.$error.required&&commentForm.comment.$dirty}">
-							<label for="comment" class="label-control col-md-3">Your Comments</label>
-							<div class="col-md-9">
+							<label for="comment" class="label-control col-md-2">Your Comments</label>
+							<div class="col-md-10">
 								<textarea required name="comment" id="comment" class="form-control" rows="12" ng-model="comments.comment"></textarea>
 								<span ng-show="commentForm.comment.$error.required&&commentForm.comment.$dirty">Your comment is required</span>
 							</div>
 						</div>
 						<div class="form-group">
-							<div class="col-md-offset-3 col-md-9">
+							<div class="col-md-offset-2 col-md-10">
 								<button class="btn btn-primary" type="submit" ng-disabled="commentForm.$invalid">
 									Submit Comment
 								</button>
 							</div>
 						</div>
-						<p>
-							Task 2: You need to validate that the user name and comments are entered
-						</p>
 					</form>
 				</div>
 			</div>

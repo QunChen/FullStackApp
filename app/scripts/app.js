@@ -149,18 +149,28 @@ function($scope) {
 function($scope) {
 
 	$scope.comments = {
-		name:"",rating:5,comment:"",data:""
+		name : "",
+		rating : 5,
+		comment : "",
+		date : ""
 	};
 
 	$scope.submitComment = function() {
 
 		//Step 2: This is how you record the dat "The date property of your JavaScript object holding the comment" = new Date().toISOString();
+		$scope.comments.date = new Date();
 
 		// Step 3: Push your comment into the dish's comment array
-		$scope.dish.comments.push("Your JavaScript Object holding the comment");
+		$scope.dish.comments.push($scope.comments);
 
-		//Step 4: reset your form to pristine
+		$scope.commentForm.$setPristine();
 
 		//Step 5: reset your JavaScript object that holds your comment
+		$scope.comments = {
+			name : "",
+			rating : 5,
+			comment : "",
+			date : ""
+		};
 	}
-}]); 
+}]);
