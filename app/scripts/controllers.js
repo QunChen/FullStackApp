@@ -6,10 +6,17 @@ function($scope, menuService) {
 	$scope.tab = 1;
 	$scope.filtText = "";
 	$scope.showDetails = false;
-    $scope.showMenu=true;
+    $scope.showMenu=false;
     $scope.message="Loading ...";
 
-    $scope.dishes=menuService.getDishes().query();
+    $scope.dishes=menuService.getDishes().query(
+        function(response){
+            $scope.dishes=response;
+            $scope.showMenu=true;
+        },
+    function(response){
+        $scope.message="Error: "+response.status+" "+response;
+    });
 
 	$scope.select = function(setTab) {
 		$scope.tab = setTab;
@@ -77,9 +84,16 @@ function($scope) {
 }]).controller('DishDetailController', ['$scope', '$stateParams', 'menuService',
 function($scope, $stateParams, menuService) {
     $scope.message="Loading ...";
-    $scope.showDish=true;
+    $scope.showDish=false;
     
-    $scope.dish=menuService.getDishes().get({id:parseInt($stateParams.id,10)});
+    $scope.dish=menuService.getDishes().get({id:parseInt($stateParams.id,10)}).$promise.then(
+        function(){ 
+            $scope.dish=response;
+            $scope.showMenu=true;
+        },
+    function(response){
+        $scope.message="Error: "+response.status+" "+response;
+    });
     
 	$scope.order = "";
 
@@ -116,8 +130,15 @@ function($scope) {
 function  ($scope,menuService,corporateFactory) {
   $scope.promotion=menuService.getPromotion(0);
      $scope.message="Loading ...";
-    $scope.showDish=true;
-  $scope.dish=menuService.getDishes().get({id:0});
+    $scope.showDish=false;
+  $scope.dish=menuService.getDishes().get({id:0}).$promise.then(
+        function(){ 
+            $scope.dish=response;
+            $scope.showMenu=true;
+        },
+    function(response){
+        $scope.message="Error: "+response.status+" "+response;
+    });
   $scope.leader=corporateFactory.getLeader(3);
 }])
 .controller('AboutController',['$scope','corporateFactory',
