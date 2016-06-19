@@ -108,9 +108,11 @@ function($scope) {
 		};
 	}
 }])
-.controller('IndexController',['$scope','menuService',
-function  ($scope,menuService) {
-  $scope.promotions=menuService.getPromotion();
+.controller('IndexController',['$scope','menuService','corporateFactory',
+function  ($scope,menuService,corporateFactory) {
+  $scope.promotion=menuService.getPromotion(0);
+  $scope.dish=menuService.getDish(0);
+  $scope.leader=corporateFactory.getLeader(3);
 }])
 .controller('AboutController',['$scope','corporateFactory',
 function  ($scope,corporateFactory) {
