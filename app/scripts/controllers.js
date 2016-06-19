@@ -15,7 +15,7 @@ function($scope, menuService) {
             $scope.showMenu=true;
         },
     function(response){
-        $scope.message="Error: "+response.status+" "+response;
+        $scope.message="Error: "+response.status+" "+response.statusText;
     });
 
 	$scope.select = function(setTab) {
@@ -87,18 +87,18 @@ function($scope, $stateParams, menuService) {
     $scope.showDish=false;
     
     $scope.dish=menuService.getDishes().get({id:parseInt($stateParams.id,10)}).$promise.then(
-        function(){ 
+        function(response){ 
             $scope.dish=response;
-            $scope.showMenu=true;
+            $scope.showDish=true;
         },
     function(response){
-        $scope.message="Error: "+response.status+" "+response;
+        $scope.message="Error: "+response.status+" "+response.statusText;
     });
     
 	$scope.order = "";
 
-}]).controller('DishCommentController', ['$scope',
-function($scope) {
+}]).controller('DishCommentController', ['$scope','menuService',
+function($scope,menuService) {
 
 	$scope.comments = {
 		name : "",
@@ -114,6 +114,7 @@ function($scope) {
 
 		// Step 3: Push your comment into the dish's comment array
 		$scope.dish.comments.push($scope.comments);
+        menuService.getDishes().update({id:$scope.dish.id},$scope.dish);
 
 		$scope.commentForm.$setPristine();
 
@@ -132,12 +133,12 @@ function  ($scope,menuService,corporateFactory) {
      $scope.message="Loading ...";
     $scope.showDish=false;
   $scope.dish=menuService.getDishes().get({id:0}).$promise.then(
-        function(){ 
+        function(response){ 
             $scope.dish=response;
-            $scope.showMenu=true;
+            $scope.showDish=true;
         },
     function(response){
-        $scope.message="Error: "+response.status+" "+response;
+        $scope.message="Error: "+response.status+" "+response.statusText;
     });
   $scope.leader=corporateFactory.getLeader(3);
 }])
