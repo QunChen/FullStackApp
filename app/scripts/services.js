@@ -207,11 +207,11 @@ angular.module("confusionApp").service('menuService', function() {
             // Implement two functions, one named getLeaders,
             // the other named getLeader(index)
             // Remember this is a factory not a service
-            corp.getLeaders=function(){
+            corpfac.getLeaders=function(){
             	return leadership;
             }
             
-             corp.getLeader=function(index){
+             corpfac.getLeader=function(index){
             	return leadership[index];
             }
             

@@ -107,4 +107,14 @@ function($scope) {
 			date : ""
 		};
 	}
-}]);
+}])
+.controller('IndexController',['$scope','menuService',
+function  ($scope,menuService) {
+  $scope.promotions=menuService.getPromotion();
+}])
+.controller('AboutController',['$scope','corporateFactory',
+function  ($scope,corporateFactory) {
+  $scope.leaders=corporateFactory.getLeaders();
+}])
+// implement the IndexController and About Controller here
+;
