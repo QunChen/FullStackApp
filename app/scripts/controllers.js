@@ -9,7 +9,7 @@ function($scope, menuService) {
     $scope.showMenu=true;
     $scope.message="Loading ...";
 
-    $scope.dishes=menuService.getDishes.query();
+    $scope.dishes=menuService.getDishes().query();
 
 	$scope.select = function(setTab) {
 		$scope.tab = setTab;
