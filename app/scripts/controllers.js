@@ -6,10 +6,14 @@ function($scope, menuService) {
 	$scope.tab = 1;
 	$scope.filtText = "";
 	$scope.showDetails = false;
+    $scope.showMenu=false;
+    $scope.message="Loading ...";
 
     $scope.dishes=[];
 	menuService.getDishes().then(function(response){
         $scope.dishes = response.data
+    },function(response){
+        $scope.message="Error: "+response.status+" "+response.statusText;
     });
 
 	$scope.select = function(setTab) {
