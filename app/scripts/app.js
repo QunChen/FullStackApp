@@ -1,12 +1,12 @@
 'use strict';
-angular.module('confusionApp', [ui.router]).config(function($stateProvider, $urlRouterProvider) {
+angular.module('confusionApp', ['ui.router']).config(function($stateProvider, $urlRouterProvider) {
 	$stateProvider.state('app', {
 		url : "/",
 		views : {
 			'header' : {
 				templateUrl : 'views/header.html'
 			},
-			content : {
+			'content' : {
 				template : '<h1>To be Completed</h1>',
 				controller : 'IndexController'
 			},
@@ -18,7 +18,7 @@ angular.module('confusionApp', [ui.router]).config(function($stateProvider, $url
 	.state('app.aboutus',{
 		url:'aboutus',
 		views:{
-			content@:{
+			'content@':{
 				template:'<h1>To be Completed</h1>'
 			}
 		}
