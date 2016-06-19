@@ -7,7 +7,10 @@ function($scope, menuService) {
 	$scope.filtText = "";
 	$scope.showDetails = false;
 
-	$scope.dishes = menuService.getDishes();
+    $scope.dishes={};
+	menuService.getDishes().then(function(response){
+        $scope.dishes = response.data
+    });
 
 	$scope.select = function(setTab) {
 		$scope.tab = setTab;
@@ -74,9 +77,11 @@ function($scope) {
 	};
 }]).controller('DishDetailController', ['$scope', '$stateParams', 'menuService',
 function($scope, $stateParams, menuService) {
-
-	var dish = menuService.getDish(parseInt($stateParams.id, 10));
-	$scope.dish = dish;
+	$scope.dish = {};
+    
+    var dish = menuService.getDish(parseInt($stateParams.id, 10)).then(function(response){
+        $scope.dish = response.data;
+    })
 	$scope.order = "";
 
 }]).controller('DishCommentController', ['$scope',
@@ -111,7 +116,10 @@ function($scope) {
 .controller('IndexController',['$scope','menuService','corporateFactory',
 function  ($scope,menuService,corporateFactory) {
   $scope.promotion=menuService.getPromotion(0);
-  $scope.dish=menuService.getDish(0);
+    $scope.dish={};
+  menuService.getDish(0).then(function(response){
+      $scope.dish=response.data;
+  });
   $scope.leader=corporateFactory.getLeader(3);
 }])
 .controller('AboutController',['$scope','corporateFactory',
