@@ -72,10 +72,10 @@ function($scope) {
 			console.log($scope.feedback);
 		}
 	};
-}]).controller('DishDetailController', ['$scope', '$routeParams', 'menuService',
-function($scope, $routeParams, menuService) {
+}]).controller('DishDetailController', ['$scope', '$stateParams', 'menuService',
+function($scope, $stateParams, menuService) {
 
-	var dish = menuService.getDish(parseInt($routeParams.id, 10));
+	var dish = menuService.getDish(parseInt($stateParams.id, 10));
 	$scope.dish = dish;
 	$scope.order = "";
 
