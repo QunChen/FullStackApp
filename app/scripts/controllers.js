@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('confusionApp').controller('MenuController', ['$scope', 'menuFactory',
-function($scope, menuFactory) {
+angular.module('confusionApp').controller('MenuController', ['$scope', 'menuService',
+function($scope, menuService) {
 
 	$scope.tab = 1;
 	$scope.filtText = "";
 	$scope.showDetails = false;
 
-	$scope.dishes = menuFactory.getDishes();
+	$scope.dishes = menuService.getDishes();
 
 	$scope.select = function(setTab) {
 		$scope.tab = setTab;
