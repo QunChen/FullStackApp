@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('confusionApp').controller('MenuController', ['$scope','menuFactory',
-function($scope,menuFactory) {
+angular.module('confusionApp').controller('MenuController', ['$scope', 'menuFactory',
+function($scope, menuFactory) {
 
 	$scope.tab = 1;
 	$scope.filtText = "";
@@ -72,10 +72,10 @@ function($scope) {
 			console.log($scope.feedback);
 		}
 	};
-}]).controller('DishDetailController', ['$scope','menuService',
-function($scope,menuService) {
+}]).controller('DishDetailController', ['$scope', '$routeParams', 'menuService',
+function($scope, $routeParams, menuService) {
 
-	var dish = menuService.getDish(3);
+	var dish = menuService.getDish(parseInt($routeParams.id, 10));
 	$scope.dish = dish;
 	$scope.order = "";
 
