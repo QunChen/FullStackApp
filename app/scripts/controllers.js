@@ -12,6 +12,7 @@ function($scope, menuService) {
     $scope.dishes=[];
 	menuService.getDishes().then(function(response){
         $scope.dishes = response.data
+        $scope.showMenu=true;
     },function(response){
         $scope.message="Error: "+response.status+" "+response.statusText; 
     });
