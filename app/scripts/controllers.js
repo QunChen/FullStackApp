@@ -7,7 +7,7 @@ function($scope, menuService) {
 	$scope.filtText = "";
 	$scope.showDetails = false;
 
-    $scope.dishes={};
+    $scope.dishes=[];
 	menuService.getDishes().then(function(response){
         $scope.dishes = response.data
     });
