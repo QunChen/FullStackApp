@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('confusionApp').controller('MenuController', ['$scope', 'menuFactory',
-function($scope, menuFactory) {
+angular.module('confusionApp').controller('MenuController', ['$scope', 'menuService',
+function($scope, menuService) {
 
 	$scope.tab = 1;
 	$scope.filtText = "";
 	$scope.showDetails = false;
 
-	$scope.dishes = menuFactory.getDishes();
+	$scope.dishes = menuService.getDishes();
 
 	$scope.select = function(setTab) {
 		$scope.tab = setTab;
@@ -107,4 +107,16 @@ function($scope) {
 			date : ""
 		};
 	}
-}]);
+}])
+.controller('IndexController',['$scope','menuService','corporateFactory',
+function  ($scope,menuService,corporateFactory) {
+  $scope.promotion=menuService.getPromotion(0);
+  $scope.dish=menuService.getDish(0);
+  $scope.leader=corporateFactory.getLeader(3);
+}])
+.controller('AboutController',['$scope','corporateFactory',
+function  ($scope,corporateFactory) {
+  $scope.leaders=corporateFactory.getLeaders();
+}])
+// implement the IndexController and About Controller here
+;
