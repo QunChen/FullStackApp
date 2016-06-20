@@ -1,4 +1,4 @@
-var gulp = require('gulp'), minifycss = require('gulp-minify-css'), jshint = require('gulp-jshint'), stylish = require('jshint-stylish'), uglify = require('gulp-uglify'), usemin = require('gulp-usemin'), imagemin = require('gulp-imagemin'), rename = require('gulp-rename'), concat = require('gulp-concat'), notify = require('gulp-notify'), cache = require('gulp-cache'), changed = require('gulp-changed'), rev = require('gulp-rev'), browserSync = require('browser-sync'), del = require('del'), require
+var gulp = require('gulp'), minifycss = require('gulp-minify-css'), jshint = require('gulp-jshint'), stylish = require('jshint-stylish'), uglify = require('gulp-uglify'), usemin = require('gulp-usemin'), imagemin = require('gulp-imagemin'), rename = require('gulp-rename'), concat = require('gulp-concat'), notify = require('gulp-notify'), cache = require('gulp-cache'), changed = require('gulp-changed'), rev = require('gulp-rev'), browserSync = require('browser-sync'), del = require('del'), ngAnnotate=require
 ('gulp-ng-annotate');
 
 gulp.task('jshint', function() {
@@ -7,9 +7,9 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('usemin', function() {
-	return gulp.src('./app/index .html').pipe(usemin({
+	return gulp.src('./app/index.html').pipe(usemin({
 		css : [ minifycss(), rev() ],
-		js : [ ngannotate(),uglify(), rev() ]
+		js : [ ngAnnotate(),uglify(), rev() ]
 	})).pipe(gulp.dest('dist/'));
 });
 
@@ -28,6 +28,10 @@ gulp.task('clean', function() {
 	return del([ 'dist' ]);
 });
 
+gulp.task('copyviews',function(){
+    gulp.src('app/views/**.html').pipe(gulp.dest('./dist/views'));
+})
+
 gulp
 		.task(
 				'copyfonts',
@@ -44,11 +48,11 @@ gulp
 				});
 
 gulp.task('default', [ 'clean' ], function() {
-	gulp.start('usemin', 'imagemin', 'copyfonts');
+	gulp.start('usemin', 'imagemin', 'copyfonts','copyviews');
 });
 
 gulp.task('watch', [ 'browser-sync' ], function() {
-	gulp.watch('{app/scripts/*8/*.js,app/styles/**/*.css,app/**/*.html}',
+	gulp.watch('{app/scripts/**/*.js,app/styles/**/*.css,app/**/*.html}',
 			[ 'usemin' ]);
 	gulp.watch('app/images/**/*', [ 'imagemin' ]);
 });
