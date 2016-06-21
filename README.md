@@ -8,3 +8,18 @@ to run the app:
   3. open another terminal  cd ../ 
   
   4. gulp watch
+
+to test the app: 
+
+   unit: 
+   
+1. cd test 
+
+2. karma start karma.conf.js
+
+
+   e2e: 
+   
+1. cd test
+
+2. protractor protractor.conf.js (make sure the app is running first)
