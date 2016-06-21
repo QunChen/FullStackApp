@@ -11,7 +11,7 @@ angular.module("confusionApp")
      
      this.getPromotions = function(){
      	return $resource(baseURL+"promotions/:id",null,{'update':{method:'PUT'}});
-     }
+     };
     
 
 }])
@@ -24,10 +24,16 @@ angular.module("confusionApp")
             // Remember this is a factory not a service
             corpfac.getLeaders=function(){
             	return $resource(baseURL+"leadership/:id",null,{'update':{method:'PUT'}});
-            }
+            };
             
     		return corpfac;
         }])
-
+    .service('contactService',['$resource','baseURL',function($resource,baseURL) {
+    
+        this.getFeedback=function(){
+            return $resource(baseURL+"feedback/:id");
+        };
+        
+    }])
 ;
 

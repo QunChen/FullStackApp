@@ -48,7 +48,8 @@ function($scope) {
 		firstName : "",
 		lastName : "",
 		agree : false,
-		email : ""
+		email : "",
+        id:""
 	};
 	var channels = [{
 		value : "tel",
@@ -59,8 +60,8 @@ function($scope) {
 	}];
 	$scope.channels = channels;
 	$scope.invalidChannelSelection = false;
-}]).controller('FeedbackController', ['$scope',
-function($scope) {
+}]).controller('FeedbackController', ['$scope','contactService',
+                                      function($scope,contactService) {
 	$scope.sendFeedback = function() {
 		console.log($scope.feedback);
 		if ($scope.feedback.agree && ($scope.feedback.mychannel == "") && !$scope.feedback.mychannel) {
@@ -68,6 +69,10 @@ function($scope) {
 			console.log('incorrect');
 		} else {
 			$scope.invalidChannelSelection = false;
+            
+       
+            contactService.getFeedback().save($scope.feedback);
+                                      
 			$scope.feedback = {
 				mychannel : "",
 				firstName : "",
