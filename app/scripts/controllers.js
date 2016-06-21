@@ -9,7 +9,7 @@ function($scope, menuService) {
     $scope.showMenu=false;
     $scope.message="Loading ...";
 
-    $scope.dishes=menuService.getDishes().query(
+    menuService.getDishes().query(
         function(response){
             $scope.dishes=response;
             $scope.showMenu=true;
@@ -48,7 +48,8 @@ function($scope) {
 		firstName : "",
 		lastName : "",
 		agree : false,
-		email : ""
+		email : "",
+        id:""
 	};
 	var channels = [{
 		value : "tel",
@@ -59,8 +60,8 @@ function($scope) {
 	}];
 	$scope.channels = channels;
 	$scope.invalidChannelSelection = false;
-}]).controller('FeedbackController', ['$scope',
-function($scope) {
+}]).controller('FeedbackController', ['$scope','contactService',
+                                      function($scope,contactService) {
 	$scope.sendFeedback = function() {
 		console.log($scope.feedback);
 		if ($scope.feedback.agree && ($scope.feedback.mychannel == "") && !$scope.feedback.mychannel) {
@@ -68,6 +69,10 @@ function($scope) {
 			console.log('incorrect');
 		} else {
 			$scope.invalidChannelSelection = false;
+            
+       
+            contactService.getFeedback().save($scope.feedback);
+                                      
 			$scope.feedback = {
 				mychannel : "",
 				firstName : "",
@@ -86,7 +91,7 @@ function($scope, $stateParams, menuService) {
     $scope.message="Loading ...";
     $scope.showDish=false;
     
-    $scope.dish=menuService.getDishes().get({id:parseInt($stateParams.id,10)}).$promise.then(
+   menuService.getDishes().get({id:parseInt($stateParams.id,10)}).$promise.then(
         function(response){ 
             $scope.dish=response;
             $scope.showDish=true;
@@ -129,22 +134,60 @@ function($scope,menuService) {
 }])
 .controller('IndexController',['$scope','menuService','corporateFactory',
 function  ($scope,menuService,corporateFactory) {
-  $scope.promotion=menuService.getPromotion(0);
-     $scope.message="Loading ...";
+    $scope.dishMessage="Loading ...";
+    $scope.promotionMessage="Loading ...";
     $scope.showDish=false;
-  $scope.dish=menuService.getDishes().get({id:0}).$promise.then(
+    $scope.showPromotion=false;
+    $scope.leaderMessage="Loading ...";
+    $scope.showLeader=false;
+    
+    
+  menuService.getPromotions().get({id:0}).$promise.then(
+        function(response){
+            $scope.promotion=response;
+            $scope.showPromotion=true;
+        },
+        function(response){
+            $scope.promotionMessage="Error: "+response.status+" "+response.statusText;                       
+        }
+  );
+    
+
+ menuService.getDishes().get({id:0}).$promise.then(
         function(response){ 
             $scope.dish=response;
             $scope.showDish=true;
         },
     function(response){
-        $scope.message="Error: "+response.status+" "+response.statusText;
+        $scope.dishMessage="Error: "+response.status+" "+response.statusText;
     });
-  $scope.leader=corporateFactory.getLeader(3);
+    
+corporateFactory.getLeaders().get({id:0}).$promise.then(
+        function(response){
+            $scope.leader=response;
+            $scope.showLeader=true;
+        },
+      function(response){
+          $scope.leaderMessage="Error: "+response.status+" "+response.statusText;
+      }
+  )  
+
 }])
 .controller('AboutController',['$scope','corporateFactory',
 function  ($scope,corporateFactory) {
-  $scope.leaders=corporateFactory.getLeaders();
+   
+    $scope.message = "Loading ...";
+    $scope.showLeaders =false;
+    
+    corporateFactory.getLeaders().query(
+        function(response){
+            $scope.leaders=response;
+            $scope.showLeaders=true;
+        },
+        function(response){
+            $scope.message="Error: "+response.status+" "+response.statusText;
+        }
+    );
 }])
 // implement the IndexController and About Controller here
 ;

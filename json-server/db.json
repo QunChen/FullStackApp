@@ -210,6 +210,31 @@
     }
   ],
   "feedback": [
-
+    {
+      "mychannel": "Email",
+      "firstName": "s",
+      "lastName": "s",
+      "agree": true,
+      "email": "2@w",
+      "id": 1,
+      "tel": {
+        "areaCode": "1",
+        "number": "s"
+      },
+      "comments": "s"
+    },
+    {
+      "mychannel": "tel",
+      "firstName": "sdfsdf",
+      "lastName": "sdfsdf",
+      "agree": true,
+      "email": "sdfds@we",
+      "id": 2,
+      "tel": {
+        "areaCode": "33",
+        "number": "333333"
+      },
+      "comments": "sdfsdf"
+    }
   ]
 }
