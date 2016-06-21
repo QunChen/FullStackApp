@@ -9,7 +9,7 @@ function($scope, menuService) {
     $scope.showMenu=false;
     $scope.message="Loading ...";
 
-    $scope.dishes=menuService.getDishes().query(
+    menuService.getDishes().query(
         function(response){
             $scope.dishes=response;
             $scope.showMenu=true;
@@ -86,7 +86,7 @@ function($scope, $stateParams, menuService) {
     $scope.message="Loading ...";
     $scope.showDish=false;
     
-    $scope.dish=menuService.getDishes().get({id:parseInt($stateParams.id,10)}).$promise.then(
+   menuService.getDishes().get({id:parseInt($stateParams.id,10)}).$promise.then(
         function(response){ 
             $scope.dish=response;
             $scope.showDish=true;
@@ -133,7 +133,8 @@ function  ($scope,menuService,corporateFactory) {
     $scope.promotionMessage="Loading ...";
     $scope.showDish=false;
     $scope.showPromotion=false;
-    
+    $scope.leaderMessage="Loading ...";
+    $scope.showLeader=false;
     
     
   menuService.getPromotions().get({id:0}).$promise.then(
@@ -156,12 +157,32 @@ function  ($scope,menuService,corporateFactory) {
         $scope.dishMessage="Error: "+response.status+" "+response.statusText;
     });
     
-    
-  $scope.leader=corporateFactory.getLeader(3);
+corporateFactory.getLeaders().get({id:0}).$promise.then(
+        function(response){
+            $scope.leader=response;
+            $scope.showLeader=true;
+        },
+      function(response){
+          $scope.leaderMessage="Error: "+response.status+" "+response.statusText;
+      }
+  )  
+
 }])
 .controller('AboutController',['$scope','corporateFactory',
 function  ($scope,corporateFactory) {
-  $scope.leaders=corporateFactory.getLeaders();
+   
+    $scope.message = "Loading ...";
+    $scope.showLeaders =false;
+    
+    corporateFactory.getLeaders().query(
+        function(response){
+            $scope.leaders=response;
+            $scope.showLeaders=true;
+        },
+        function(response){
+            $scope.message="Error: "+response.status+" "+response.statusText;
+        }
+    );
 }])
 // implement the IndexController and About Controller here
 ;
