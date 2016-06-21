@@ -129,17 +129,34 @@ function($scope,menuService) {
 }])
 .controller('IndexController',['$scope','menuService','corporateFactory',
 function  ($scope,menuService,corporateFactory) {
-  $scope.promotion=menuService.getPromotion(0);
-     $scope.message="Loading ...";
+    $scope.dishMessage="Loading ...";
+    $scope.promotionMessage="Loading ...";
     $scope.showDish=false;
-  $scope.dish=menuService.getDishes().get({id:0}).$promise.then(
+    $scope.showPromotion=false;
+    
+    
+    
+  menuService.getPromotions().get({id:0}).$promise.then(
+        function(response){
+            $scope.promotion=response;
+            $scope.showPromotion=true;
+        },
+        function(response){
+            $scope.promotionMessage="Error: "+response.status+" "+response.statusText;                       
+        }
+  );
+    
+
+ menuService.getDishes().get({id:0}).$promise.then(
         function(response){ 
             $scope.dish=response;
             $scope.showDish=true;
         },
     function(response){
-        $scope.message="Error: "+response.status+" "+response.statusText;
+        $scope.dishMessage="Error: "+response.status+" "+response.statusText;
     });
+    
+    
   $scope.leader=corporateFactory.getLeader(3);
 }])
 .controller('AboutController',['$scope','corporateFactory',
